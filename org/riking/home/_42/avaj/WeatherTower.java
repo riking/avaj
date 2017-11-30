@@ -5,7 +5,11 @@ public class WeatherTower extends Tower {
         return "";
     }
 
-    protected void changeWeather() {
+    /* package */ void changeWeather() {
 
+
+        // TODO ...
+
+        this.conditionsChanged();
     }
 }
