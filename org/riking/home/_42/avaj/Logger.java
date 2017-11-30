@@ -1,7 +1,5 @@
 package org.riking.home._42.avaj;
 
-import sun.rmi.runtime.Log;
-
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
