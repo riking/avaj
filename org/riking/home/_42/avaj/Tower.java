@@ -17,7 +17,11 @@ public class Tower {
     }
     public void unregister(Flyable flyable) {
         this.logf("%s unregistered from weather tower.", flyable.getDescriptor());
-        toRemove.add(flyable);
+        if (toRemove != null) {
+            toRemove.add(flyable);
+        } else {
+            observers.remove(flyable);
+        }
     }
 
     protected void conditionsChanged() {
