@@ -12,10 +12,6 @@ public class JetPlane extends Aircraft implements Flyable {
         String weather = this.weatherTower.getWeather(this.coordinates);
 
         switch (weather) {
-            case "SUN":
-                this.log("Sunny out, climbing.");
-                this.adjustCoordinates(0, +10, +2);
-                break;
             case "RAIN":
                 this.log("It's raining. Better watch out for lightning.");
                 this.adjustCoordinates(0, +5, 0);
@@ -23,6 +19,10 @@ public class JetPlane extends Aircraft implements Flyable {
             case "FOG":
                 this.log("Heavy fog, switching to IFR.");
                 this.adjustCoordinates(0, +1, 0);
+                break;
+            case "SUN":
+                this.log("Sunny out, climbing.");
+                this.adjustCoordinates(0, +10, +2);
                 break;
             case "SNOW":
                 this.log("OMG! Winter is coming!");

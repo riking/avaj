@@ -1,7 +1,5 @@
 package org.riking.home._42.avaj;
 
-import java.util.List;
-
 public class WeatherProvider {
     private static WeatherProvider weatherProvider;
     private String[] weather;
