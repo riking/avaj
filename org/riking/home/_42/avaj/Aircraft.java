@@ -20,19 +20,18 @@ public abstract class Aircraft {
         return idCounter;
     }
 
+    public String getDescriptor() {
+        return this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ")";
+    }
+
     protected void log(String message) {
-        Logger.getLogger().getOutput().printf("%s#%s(%d): %s\n",
-                this.getClass().getName(),
-                this.name,
-                this.id,
-                message);
+        Logger.getLogger().getOutput().printf("%s: %s\n",
+                this.getDescriptor(), message);
     }
 
     protected void logLanding(Coordinates coordinates) {
-        Logger.getLogger().getOutput().format("%s#%s(%d) landing at (%d, %d).\n",
-                this.getClass().getName(),
-                this.name,
-                this.id,
+        Logger.getLogger().getOutput().format("%s landing at (%d, %d).\n",
+                this.getDescriptor(),
                 coordinates.getLongitude(),
                 coordinates.getLatitude());
     }

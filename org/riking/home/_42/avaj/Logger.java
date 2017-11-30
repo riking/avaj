@@ -1,9 +1,10 @@
 package org.riking.home._42.avaj;
 
+import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-public class Logger {
+public class Logger implements Closeable {
     private static Logger instance;
 
     private PrintStream outStream;
@@ -29,13 +30,14 @@ public class Logger {
      * @throws FileNotFoundException File could not be created
      * @throws SecurityException Write permission is denied
      */
-    public static void setupFile(String outputPath) throws FileNotFoundException, SecurityException {
+    public static Logger setupFile(String outputPath) throws FileNotFoundException, SecurityException {
         if (instance != null) {
             instance.close();
             instance = null;
         }
 
         instance = new Logger(outputPath);
+        return instance;
     }
 
     /**
