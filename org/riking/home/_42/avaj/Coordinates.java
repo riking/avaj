@@ -11,7 +11,6 @@ public class Coordinates {
         this.height = height;
     }
 
-
     public int getLongitude() {
         return longitude;
     }
@@ -24,4 +23,24 @@ public class Coordinates {
         return height;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other.getClass() != Coordinates.class) {
+            return false;
+        }
+        Coordinates o = (Coordinates) other;
+        return this.longitude == o.longitude &&
+                this.latitude == o.latitude &&
+                this.height == o.height;
+    }
+
+    @Override
+    public int hashCode() {
+        // height ranges from 0 to 100
+        // provide range of 4k before looping long/lat
+        return this.height + 100 * (this.longitude + (1 << 12) * (this.latitude));
+    }
 }
