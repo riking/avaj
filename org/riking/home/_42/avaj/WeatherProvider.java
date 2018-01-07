@@ -1,17 +1,27 @@
 package org.riking.home._42.avaj;
 
-public class WeatherProvider {
+public final class WeatherProvider {
+    /**
+     * Singleton instance
+     */
     private static WeatherProvider weatherProvider;
+
+    /**
+     * Stores the constant weather strings
+     */
     private final String[] weather;
 
+    /**
+     * Perlin noise used to generate weather
+     */
     private PerlinNoise3 temperature;
     private PerlinNoise3 humidity;
 
     private WeatherProvider() {
-        this.weather = new String[] { "RAIN", "FOG", "SUN", "SNOW" };
+        this.weather = new String[] { "RAIN", "SUN", "SNOW", "FOG" };
 
-        this.temperature = new PerlinNoise3(2, null, false);
-        this.humidity = new PerlinNoise3(3, null, true);
+        this.temperature = new PerlinNoise3(3, null, false);
+        this.humidity = new PerlinNoise3(4, null, true);
     }
 
     public static WeatherProvider getProvider() {
@@ -27,7 +37,20 @@ public class WeatherProvider {
                 coordinates.getLongitude() + 0.5, coordinates.getHeight() + 0.5);
         double temp = this.temperature.get(coordVector);
         double hum = this.humidity.get(coordVector);
-        return weather[0];
+
+        if (hum > 0.5) {
+            if (temp < 0.5) {
+                return weather[0];
+            } else {
+                return weather[1];
+            }
+        } else {
+            if (temp < 0.5) {
+                return weather[2];
+            } else {
+                return weather[3];
+            }
+        }
     }
 
 }
