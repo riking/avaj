@@ -38,9 +38,6 @@ public final class WeatherProvider {
         double temp = this.temperature.get(coordVector);
         double hum = this.humidity.get(coordVector);
 
-        Logger.getLogger().getOutput().printf("Weather at (%3d,%3d,%3d): (T %f, H %f)\n", coordinates.getLatitude(),
-                coordinates.getLongitude(), coordinates.getHeight(), temp, hum);
-
         if (temp > 0) {
             if (hum > 0) {
                 return weather[0];
