@@ -35,7 +35,7 @@ public class PerlinNoise3 {
 
     private static final int dimensions = 3;
     // range of noise is ±sqrt(dim)/2
-    private static final double scale_factor = 2. * (1. / Math.sqrt(3));
+    private static final double scale_factor = 2. * Math.pow(3, -0.5);
 
     /**
      * Create a new Perlin noise factory with 3 dimensions, 2 octaves, no
@@ -319,7 +319,7 @@ public class PerlinNoise3 {
             public Double next() {
                 int _state = state;
                 this.state = _state + 1;
-                return get(_state);
+                return PerlinNoise3.Vector3.this.get(_state);
             }
         }
     }

@@ -33,19 +33,22 @@ public final class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        PerlinNoise3.Vector3 coordVector = new PerlinNoise3.Vector3(coordinates.getLatitude() + 0.5,
-                coordinates.getLongitude() + 0.5, coordinates.getHeight() + 0.5);
+        PerlinNoise3.Vector3 coordVector = new PerlinNoise3.Vector3(coordinates.getLatitude() / 20.,
+                coordinates.getLongitude() / 20., coordinates.getHeight() / 20.);
         double temp = this.temperature.get(coordVector);
         double hum = this.humidity.get(coordVector);
 
-        if (hum > 0.5) {
-            if (temp < 0.5) {
+        Logger.getLogger().getOutput().printf("Weather at (%3d,%3d,%3d): (T %f, H %f)\n", coordinates.getLatitude(),
+                coordinates.getLongitude(), coordinates.getHeight(), temp, hum);
+
+        if (temp > 0) {
+            if (hum > 0) {
                 return weather[0];
             } else {
                 return weather[1];
             }
         } else {
-            if (temp < 0.5) {
+            if (hum > 0) {
                 return weather[2];
             } else {
                 return weather[3];
